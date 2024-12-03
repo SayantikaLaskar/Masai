@@ -1,6 +1,13 @@
-const multiply = (a = 1, b = 1) => a * b;
+function multiply(a = 1, b = 1) {
+  return a * b;
+}
 
-// Example usage:
-console.log(multiply(3, 4)); // Output: 12
-console.log(multiply(2));   // Output: 2
-console.log(multiply());    // Output: 1
+function takeInputAndMultiply() {
+  const num1 = parseInt(prompt("Enter the first number:"));
+  const num2 = parseInt(prompt("Enter the second number (optional):"));
+
+  const result = multiply(num1, num2);
+  console.log("The product is:", result);
+}
+
+takeInputAndMultiply();
