@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>E-commerce Home</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="navbar"></div>
+
+  <div class="product-container">
+    </div>
+
+  <script src="navbar.js"></script>
+  <script src="displayProducts.js"></script>
+  <script>
+    import createNavbar from './navbar.js';
+    import { displayProducts } from './displayProducts.js';
+
+    const navbar = createNavbar();
+    document.body.insertBefore(navbar, document.body.firstChild);
+
+    const products = [
+      { name: "Product 1", category: "Electronics", price: 199, rating: 4.5 },
+      { name: "Product 2", category: "Clothing", price: 50, rating: 4 },
+      // ... more products
+    ];
+
+    displayProducts(products, 'product-container', addToCart, addToWishlist); 
+
+    function addToCart(product) {
+      // Logic to add product to cart (using localStorage)
+    }
+
+    function addToWishlist(product) {
+      // Logic to add product to wishlist (using localStorage)
+    }
+  </script>
+</body>
+</html>
