@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Wishlist</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="navbar"></div>
+
+  <div class="product-container">
+    </div>
+
+  <script src="navbar.js"></script>
+  <script src="displayProducts.js"></script>
+  <script>
+    import createNavbar from './navbar.js';
+    import { displayProducts } from './displayProducts.js';
+
+    const navbar = createNavbar();
+    document.body.insertBefore(navbar, document.body.firstChild);
+
+    // Get wishlist from localStorage
+    const wishlist = JSON.parse(localStorage.getItem('wishlist')) || []; 
+
+    displayProducts(wishlist, 'product-container', addToCart); 
+
+    function addToCart(product) {
+      // Logic to add product to cart (using localStorage)
+    }
+  </script>
+</body>
+</html>
