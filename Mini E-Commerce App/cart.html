@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Cart</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="navbar"></div>
+
+  <div class="product-container">
+    </div>
+
+  <script src="navbar.js"></script>
+  <script src="displayProducts.js"></script>
+  <script>
+    import createNavbar from './navbar.js';
+    import { displayProducts } from './displayProducts.js';
+
+    const navbar = createNavbar();
+    document.body.insertBefore(navbar, document.body.firstChild);
+
+    // Get cart from localStorage
+    const cart = JSON.parse(localStorage.getItem('cart')) || []; 
+
+    displayProducts(cart, 'product-container'); 
+  </script>
+</body>
+</html>
