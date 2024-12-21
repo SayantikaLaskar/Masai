@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mini E-commerce - Cart</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Navbar -->
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="wishlist.html">Wishlist</a>
+    <a href="cart.html">Cart</a>
+  </nav>
+
+  <div id="checkout">
+    <h3 id="total-value">Total Price: 0</h3>
+    <button id="checkout-btn">Checkout</button>
+  </div>
+
+  <div id="cart-grid"></div>
+
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      const cart = JSON.parse(localStorage.getItem('cartProducts')) || [];
+      const grid = document.getElementById('cart-grid');
+      const totalDiv = document.getElementById('total-value');
+      let total = 0;
+
+      cart.forEach((product, index) => {
+        total += product.price;
+
+        const card = document.createElement('div');
+        card.innerHTML = `
+          <img src="${product.image}" alt="${product.title}" />
+          <h3>${product.title}</h3>
+          <p>Price: $${product.price}</p>
+          <p>Description: ${product.description}</p>
+          <p>Rating: ${product.rating.rate}</p>
+          <button class="remove-btn">Remove from Cart</button>
+        `;
+
+        card.querySelector('.remove-btn').addEventListener('click', () => {
+          cart.splice(index, 1);
+          localStorage.setItem('cartProducts', JSON.stringify(cart));
+          location.reload();
+        });
+
+        grid.appendChild(card);
+      });
+
+      totalDiv.textContent = 'Total Price: $${total}';
+
+      document.getElementById('checkout-btn').addEventListener('click', () => {
+        if (confirm('Are you sure to checkout?')) {
+          setTimeout(() => {
+            alert('Thanks for shopping!');
+            localStorage.removeItem('cartProducts');
+            location.reload();
+          }, 2000);
+        }
+      });
+    });
+  </script>
+</body>
+</html>
